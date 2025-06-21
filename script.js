@@ -210,3 +210,22 @@ document.getElementById("dev-button")?.addEventListener("click", () => {
   potatoes += 1000;
   updateDisplay();
 });
+
+function toggleMusic() {
+  const audio = document.getElementById("background-music");
+  if (audio.paused) {
+    audio.play();
+    document.getElementById("music-toggle").textContent = "🔊";
+  } else {
+    audio.pause();
+    document.getElementById("music-toggle").textContent = "🔇";
+  }
+}
+
+let audioStarted = false;
+document.getElementById("potato").addEventListener("click", () => {
+  if (!audioStarted) {
+    document.getElementById("background-music").play();
+    audioStarted = true;
+  }
+});
