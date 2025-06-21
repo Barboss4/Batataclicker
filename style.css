@@ -1,120 +1,175 @@
- body {
-      font-family: Arial, sans-serif;
-      background-color: #fff8dc;
-      color: #333;
-      margin: 0;
-      padding: 0;
-    }
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fff8dc;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
 
-    #upgrades, #potato-upgrades {
-      position: fixed;
-      top: 0;
-      width: 200px;
-      height: 100vh;
-      background-color: #f5deb3;
-      padding: 20px;
-      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-      overflow-y: auto;
-    }
+/* Painéis laterais */
+#upgrades, #potato-upgrades {
+  position: fixed;
+  top: 0;
+  width: 200px;
+  height: 100vh;
+  background-color: #f5deb3;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+}
 
-    #upgrades {
-      left: 0;
-    }
+#upgrades {
+  left: 0;
+  padding-top: 80px;
+}
 
-    #potato-upgrades {
-      right: 0;
-      box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
-    }
+#potato-upgrades {
+  right: 0;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  padding-top: 80px;
+}
 
-    #upgrades h2,
-    #potato-upgrades h2 {
-      margin-top: 0;
-    }
+#upgrades h2,
+#potato-upgrades h2 {
+  margin-top: 0;
+}
 
-    #upgrades button,
-    #potato-upgrades button {
-      display: block;
-      width: 100%;
-      margin-bottom: 10px;
-      padding: 8px;
-      font-weight: bold;
-      background-color: #deb887;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
+#upgrades button,
+#potato-upgrades button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  font-weight: bold;
+  background-color: #deb887;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
-    #upgrades button:hover,
-    #potato-upgrades button:hover {
-      background-color: #d2b48c;
-    }
+#upgrades button:hover,
+#potato-upgrades button:hover {
+  background-color: #d2b48c;
+}
 
-    #main-content {
-      margin-left: 220px;
-      margin-right: 220px;
-      text-align: center;
-      padding: 40px 0;
-      position: relative;
-    }
+/* Conteúdo principal */
+#main-content {
+  position: relative;
+  margin-left: 220px;
+  margin-right: 220px;
+  height: calc(100vh - 60px); /* Altura da tela menos a barra superior */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 2;
+  padding-top: 60px; /* Espaço extra para a top bar */
+  min-height: 80vh;
+}
 
-    #potato {
-      width: 200px;
-      cursor: pointer;
-      margin: 20px 0;
-      transition: transform 0.1s;
-    }
+/* Batata clicável */
+#potato {
+  width: 200px;
+  cursor: pointer;
+  transition: transform 0.1s;
+  z-index: 2;
+}
 
-    #potato:active {
-      transform: scale(0.95);
-    }
+#potato:active {
+  transform: scale(0.95);
+}
 
-    #top-status {
-      font-size: 20px;
-      font-weight: bold;
-      background-color: #fff8dc;
-      padding: 20px 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 12px rgba(0,0,0,0.15);
-      text-align: left;
-      position: absolute;
-      top: 10px;
-      right: 50px;
-      z-index: 2;
-    }
 
-    #top-status h1, #top-status p {
-      margin: 10px 0;
-    }
+/* Barra superior reorganizada */
+#top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #fff3cf;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  font-family: Arial, sans-serif;
+}
 
-    #reset-button {
-      background-color: #fff8dc;
-      color: rgb(0, 0, 0);
-      display: block;
-      margin: 20px auto;
-      padding: 5px 10px;
-      font-size: 8px;
-    }
+#top-bar h1 {
+  margin: 0;
+  font-size: 22px;
+}
 
-    #reset-button:hover {
-      background-color: #deb887;
-    }
+.top-left {
+  flex: 1;
+  text-align: left;
+}
 
-    #background-wrapper {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 1;
-      pointer-events: none;
-    }
+.top-stats {
+  flex: 2;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+}
 
-    #backpotato {
-      position: absolute;
-      top: 80px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 250px;
-      height: auto;
-      opacity: 0.2;
-    }
+.top-stats p {
+  margin: 0;
+}
+
+#reset-button {
+  background-color: #fff8dc;
+  color: rgb(0, 0, 0);
+  padding: 10px 20px;
+  font-size: 12px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+
+#reset-button:hover {
+  background-color: #deb887;
+}
+
+#background-wrapper {
+  position: absolute;
+  top: 60px; /* abaixo da top bar */
+  left: 220px;
+  right: 220px;
+  bottom: 0;
+  z-index: 1;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+}
+
+#backpotato {
+  width: 80%;
+  max-width: 800px;
+  height: auto;
+  opacity: 1;
+}
+
+#music-toggle {
+  background-color: #fff3cf;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
+}
+
+#music-toggle:hover {
+  background-color: #ffeaa7;
+}
