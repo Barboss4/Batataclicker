@@ -17,16 +17,16 @@ const buildings = {
 };
 
 const clickUpgrades = {
-  upgrade1: { count: 0, baseCost: 50, bonus: 1 },
-  upgrade2: { count: 0, baseCost: 200, bonus: 2 },
-  upgrade3: { count: 0, baseCost: 1000, bonus: 5 },
-  upgrade4: { count: 0, baseCost: 3000, bonus: 10 },
-  upgrade5: { count: 0, baseCost: 10000, bonus: 25 },
-  upgrade6: { count: 0, baseCost: 50000, bonus: 75 },
-  upgrade7: { count: 0, baseCost: 200000, bonus: 250 },
-  upgrade8: { count: 0, baseCost: 1000000, bonus: 1000 },
-  upgrade9: { count: 0, baseCost: 5000000, bonus: 4000 },
-  upgrade10: { count: 0, baseCost: 20000000, bonus: 15000 }
+  'Aumentar o Tamanho da Batata': { count: 0, baseCost: 50, bonus: 1 },
+  'Preço Mais Alto no Mercado': { count: 0, baseCost: 200, bonus: 2 },
+  'Polimento de Casca': { count: 0, baseCost: 1000, bonus: 5 },
+  'Adubo Secreto': { count: 0, baseCost: 3000, bonus: 10 },
+  'Música Clássica para Batatas': { count: 0, baseCost: 10000, bonus: 25 },
+  'Coach de Alta Performance para Batatas': { count: 0, baseCost: 50000, bonus: 75 },
+  'MBA em Agronegócio Batateiro': { count: 0, baseCost: 200000, bonus: 250 },
+  'Transgênico Turbinado': { count: 0, baseCost: 1000000, bonus: 1000 },
+  'Contrato com Multinacional de Chips': { count: 0, baseCost: 5000000, bonus: 4000 },
+  'Fusão com Inteligência Artificial Batatal': { count: 0, baseCost: 20000000, bonus: 15000 }
 };
 
 const buildingOrder = Object.keys(buildings);
@@ -67,10 +67,10 @@ function updateDisplay() {
     const span = document.getElementById(`${name}-count`);
     if (span) span.textContent = buildings[name].count;
   }
-  for (const key in clickUpgrades) {
-    const span = document.getElementById(`click-upgrade-${key.replace("upgrade", "")}-count`);
+  clickUpgradeOrder.forEach((key, index) => {
+    const span = document.getElementById(`click-upgrade-${index + 1}-count`);
     if (span) span.textContent = clickUpgrades[key].count;
-  }
+  });
 }
 
 function updatePotatoImage(buildingName) {
@@ -87,7 +87,7 @@ function updatePotatoImage(buildingName) {
     multiverse: "assets/multiverse.gif"
   };
 
-  const img = document.getElementById("potato");
+  const img = document.getElementById("backpotato");
   if (buildings[buildingName].count === 1 && imageMap[buildingName]) {
     img.src = imageMap[buildingName];
   }
@@ -99,6 +99,13 @@ function buyBuilding(name) {
   if (potatoes >= cost) {
     potatoes -= cost;
     item.count++;
+
+    const nextCost = Math.floor(item.baseCost * Math.pow(1.15, item.count));
+    const button = document.getElementById(`buy-${name}`);
+    if (button) {
+      button.textContent = `Comprar ${capitalize(name)} (${nextCost} batatas)`;
+    }
+
     updateDisplay();
     checkUnlocks();
     updatePotatoImage(name);
@@ -112,6 +119,14 @@ function buyClickUpgrade(key) {
     potatoes -= cost;
     upgrade.count++;
     clickValue += upgrade.bonus;
+
+    const nextCost = Math.floor(upgrade.baseCost * Math.pow(1.25, upgrade.count));
+    const index = clickUpgradeOrder.indexOf(key);
+    const button = document.getElementById(`click-upgrade-${index + 1}`);
+    if (button) {
+      button.textContent = `${capitalize(key)} (${nextCost} batatas)`;
+    }
+
     updateDisplay();
     checkUnlocks();
   }
@@ -191,7 +206,7 @@ document.getElementById("potato").addEventListener("click", () => {
   updateDisplay();
 });
 
-document.getElementById("dev-button").addEventListener("click", () => {
+document.getElementById("dev-button")?.addEventListener("click", () => {
   potatoes += 1000;
   updateDisplay();
 });
