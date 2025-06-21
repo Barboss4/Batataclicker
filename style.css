@@ -1,0 +1,115 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fff8dc;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+#potato-upgrades button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  font-weight: bold;
+  background-color: #deb887;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#potato-upgrades button:hover {
+  background-color: #d2b48c;
+}
+
+
+#upgrades, #potato-upgrades {
+  position: fixed;
+  top: 0;
+  width: 200px;
+  height: 100vh;
+  background-color: #f5deb3;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+}
+
+#upgrades {
+  left: 0;
+}
+
+#potato-upgrades {
+  right: 0;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+#upgrades h2,
+#potato-upgrades h2 {
+  margin-top: 0;
+}
+
+#upgrades button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  font-weight: bold;
+  background-color: #deb887;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#upgrades button:hover {
+  background-color: #d2b48c;
+}
+
+#main-content {
+  margin-left: 220px;
+  margin-right: 220px;
+  text-align: center;
+  padding: 40px 0;
+}
+
+#potato {
+  width: 200px;
+  cursor: pointer;
+  margin: 20px 0;
+  transition: transform 0.1s;
+}
+
+#potato:active {
+  transform: scale(0.95);
+}
+
+#counter {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#dev-button {
+  background-color: #bb4444;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#dev-button:hover {
+  background-color: #aa3333;
+}
+
+#reset-button {
+    background-color: #fff8dc;
+    color: rgb(0, 0, 0);
+    display: block;
+    margin: 20px auto;
+    padding: 5px 10px;
+    font-size: 8px;
+}
+
+#reset-button:hover {
+  background-color: #deb887;
+}

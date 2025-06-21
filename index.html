@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Potato Clicker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Barra esquerda: upgrades automáticos -->
+  <div id="upgrades">
+    <h2>Melhorias</h2>
+    <div id="building-buttons"></div>
+  </div>
+
+  <!-- Barra direita: upgrades de clique -->
+  <div id="potato-upgrades">
+    <h2>Batatas</h2>
+    <div id="click-upgrade-buttons"></div>
+  </div>
+
+  <!-- Área principal do jogo -->
+  <div id="main-content">
+    <h1>🥔 Potato Clicker</h1>
+    <p id="counter">Batatas: <span id="potato-count">0</span></p>
+    <p>Batatas por clique: <span id="batatas-por-clique">1</span></p>
+    <p>Batatas por segundo: <span id="batatas-por-segundo">0</span></p>
+    <img id="potato" src="assets/batata.gif" alt="Batata" />
+    <!--
+    <button id="dev-button" style="margin-top: 10px;">+1000 Batatas (DEV)</button> -->
+    <button id="reset-button" onclick="resetGame()" style="margin-top: 10px;">Resetar Jogo</button>
+  </div>
+
+  <!-- Código do jogo -->
+  <script src="script.js"></script>
+</body>
+</html>
