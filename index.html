@@ -7,37 +7,52 @@
 </head>
 <body>
 
-    <!-- Fundo da área central -->
+  <audio id="background-music" autoplay loop>
+  <source src="assets/musica.mp3" type="audio/mpeg">
+  Seu navegador não suporta o elemento de áudio.
+</audio>
+
+  <!-- Fundo da área central -->
   <div id="background-wrapper">
-    <img id="backpotato" src="assets/fazendeiro.gif" alt="Fundo da Batata" />
+    <img id="backpotato" src="assets/fazenda.gif" alt="Fundo da Batata" />
   </div>
-  
-  <!-- Barra esquerda: upgrades automáticos -->
+
+    <!-- Barra superior com nome e contadores -->
+  <div id="top-bar">
+    <div class="top-left">
+      <h1>🥔 Potato Clicker</h1>
+    </div>
+    <button onclick="toggleMusic()" id="music-toggle">🔊</button>
+    <div class="top-stats">
+      <p><strong>Batatas:</strong> <span id="potato-count">0</span></p>
+      <p><strong>Por clique:</strong> <span id="batatas-por-clique">0</span></p>
+      <p><strong>Por segundo:</strong> <span id="batatas-por-segundo">0</span></p>
+    </div>
+
+
+  </div>
+
+  <!-- Barra lateral esquerda: melhorias automáticas -->
   <div id="upgrades">
     <h2>Melhorias</h2>
     <div id="building-buttons"></div>
   </div>
 
-  <!-- Barra direita: upgrades de clique -->
+  <!-- Barra lateral direita: melhorias de clique -->
   <div id="potato-upgrades">
     <h2>Batatas</h2>
     <div id="click-upgrade-buttons"></div>
   </div>
 
- <!-- Área principal do jogo -->
+
+
+  <!-- Conteúdo central do jogo -->
   <div id="main-content">
-
-      <h1>🥔 Potato Clicker</h1>
-      <p><strong>Batatas:</strong> <span id="potato-count">0</span></p>
-      <p><strong>Batatas por clique:</strong> <span id="batatas-por-clique">1</span></p>
-      <p><strong>Batatas por segundo:</strong> <span id="batatas-por-segundo">0</span></p>
-
     <img id="potato" src="assets/batata.gif" alt="Batata" />
-
     <button id="reset-button" onclick="resetGame()">Resetar Jogo</button>
   </div>
 
-  <!-- Código do jogo -->
+  <!-- Lógica do jogo -->
   <script src="script.js"></script>
 </body>
 </html>
