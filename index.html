@@ -6,6 +6,12 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+    <!-- Fundo da área central -->
+  <div id="background-wrapper">
+    <img id="backpotato" src="assets/fazendeiro.gif" alt="Fundo da Batata" />
+  </div>
+  
   <!-- Barra esquerda: upgrades automáticos -->
   <div id="upgrades">
     <h2>Melhorias</h2>
@@ -18,16 +24,17 @@
     <div id="click-upgrade-buttons"></div>
   </div>
 
-  <!-- Área principal do jogo -->
+ <!-- Área principal do jogo -->
   <div id="main-content">
-    <h1>🥔 Potato Clicker</h1>
-    <p id="counter">Batatas: <span id="potato-count">0</span></p>
-    <p>Batatas por clique: <span id="batatas-por-clique">1</span></p>
-    <p>Batatas por segundo: <span id="batatas-por-segundo">0</span></p>
+
+      <h1>🥔 Potato Clicker</h1>
+      <p><strong>Batatas:</strong> <span id="potato-count">0</span></p>
+      <p><strong>Batatas por clique:</strong> <span id="batatas-por-clique">1</span></p>
+      <p><strong>Batatas por segundo:</strong> <span id="batatas-por-segundo">0</span></p>
+
     <img id="potato" src="assets/batata.gif" alt="Batata" />
-    <!--
-    <button id="dev-button" style="margin-top: 10px;">+1000 Batatas (DEV)</button> -->
-    <button id="reset-button" onclick="resetGame()" style="margin-top: 10px;">Resetar Jogo</button>
+
+    <button id="reset-button" onclick="resetGame()">Resetar Jogo</button>
   </div>
 
   <!-- Código do jogo -->
