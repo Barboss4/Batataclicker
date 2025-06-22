@@ -173,3 +173,24 @@ body {
 #music-toggle:hover {
   background-color: #ffeaa7;
 }
+
+.floating-text {
+  position: absolute;
+  color: #8b4513;
+  font-weight: bold;
+  animation: float-up 1s ease-out forwards;
+  pointer-events: none;
+  z-index: 999;
+}
+
+@keyframes float-up {
+  0% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+}
+
