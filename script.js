@@ -64,11 +64,11 @@ function updateDisplay() {
   document.getElementById("batatas-por-segundo").textContent = totalCPS;
 
   for (const name in buildings) {
-    const span = document.getElementById(`${name}-count`);
+    const span = document.getElementById(${name}-count);
     if (span) span.textContent = buildings[name].count;
   }
   clickUpgradeOrder.forEach((key, index) => {
-    const span = document.getElementById(`click-upgrade-${index + 1}-count`);
+    const span = document.getElementById(click-upgrade-${index + 1}-count);
     if (span) span.textContent = clickUpgrades[key].count;
   });
 }
@@ -87,10 +87,9 @@ function updatePotatoImage(buildingName) {
     multiverse: "assets/multiverse.gif"
   };
 
-  for (const name of Object.keys(imageMap)) {
-    if (buildings[name] && buildings[name].count > 0) {
-      document.getElementById("backpotato").src = imageMap[name];
-      break; // mostra o mais avançado que tiver
+  const img = document.getElementById("backpotato");
+  if (buildings[buildingName].count === 1 && imageMap[buildingName]) {
+    img.src = imageMap[buildingName];
   }
 }
 
@@ -102,14 +101,13 @@ function buyBuilding(name) {
     item.count++;
 
     const nextCost = Math.floor(item.baseCost * Math.pow(1.15, item.count));
-    const button = document.getElementById(`buy-${name}`);
+    const button = document.getElementById(buy-${name});
     if (button) {
-      button.textContent = `Comprar ${capitalize(name)} (${nextCost} batatas)`;
+      button.textContent = Comprar ${capitalize(name)} (${nextCost} batatas);
     }
 
     updateDisplay();
     checkUnlocks();
-    updatePotatoImage();
     updatePotatoImage(name);
   }
 }
@@ -124,9 +122,9 @@ function buyClickUpgrade(key) {
 
     const nextCost = Math.floor(upgrade.baseCost * Math.pow(1.25, upgrade.count));
     const index = clickUpgradeOrder.indexOf(key);
-    const button = document.getElementById(`click-upgrade-${index + 1}`);
+    const button = document.getElementById(click-upgrade-${index + 1});
     if (button) {
-      button.textContent = `${capitalize(key)} (${nextCost} batatas)`;
+      button.textContent = ${capitalize(key)} (${nextCost} batatas);
     }
 
     updateDisplay();
@@ -137,7 +135,7 @@ function buyClickUpgrade(key) {
 function checkUnlocks() {
   for (let i = 1; i < buildingOrder.length; i++) {
     const prev = buildings[buildingOrder[i - 1]];
-    const btn = document.getElementById(`buy-${buildingOrder[i]}`);
+    const btn = document.getElementById(buy-${buildingOrder[i]});
     if (prev.count >= 10 && btn && btn.style.display === "none") {
       btn.style.display = "block";
     }
@@ -145,7 +143,7 @@ function checkUnlocks() {
 
   for (let i = 1; i < clickUpgradeOrder.length; i++) {
     const prev = clickUpgrades[clickUpgradeOrder[i - 1]];
-    const block = document.getElementById(`${clickUpgradeOrder[i]}-block`);
+    const block = document.getElementById(${clickUpgradeOrder[i]}-block);
     if (prev.count >= 10 && block && block.style.display === "none") {
       block.style.display = "block";
     }
@@ -159,12 +157,12 @@ function renderButtons() {
   buildingOrder.forEach(name => {
     const cost = Math.floor(buildings[name].baseCost);
     const btn = document.createElement("button");
-    btn.id = `buy-${name}`;
-    btn.textContent = `Comprar ${capitalize(name)} (${cost} batatas)`;
+    btn.id = buy-${name};
+    btn.textContent = Comprar ${capitalize(name)} (${cost} batatas);
     btn.style.display = name === "farmer" ? "block" : "none";
     btn.addEventListener("click", () => buyBuilding(name));
     const count = document.createElement("p");
-    count.innerHTML = `${capitalize(name)}s: <span id="${name}-count">0</span>`;
+    count.innerHTML = ${capitalize(name)}s: <span id="${name}-count">0</span>;
     buildingContainer.appendChild(btn);
     buildingContainer.appendChild(count);
   });
@@ -172,16 +170,16 @@ function renderButtons() {
   clickUpgradeOrder.forEach((key, index) => {
     const cost = clickUpgrades[key].baseCost;
     const block = document.createElement("div");
-    block.id = `${key}-block`;
+    block.id = ${key}-block;
     if (index !== 0) block.style.display = "none";
 
     const btn = document.createElement("button");
-    btn.id = `click-upgrade-${index + 1}`;
-    btn.textContent = `${capitalize(key)} (${cost} batatas)`;
+    btn.id = click-upgrade-${index + 1};
+    btn.textContent = ${capitalize(key)} (${cost} batatas);
     btn.addEventListener("click", () => buyClickUpgrade(key));
 
     const count = document.createElement("p");
-    count.innerHTML = `Nível: <span id="click-upgrade-${index + 1}-count">0</span>`;
+    count.innerHTML = Nível: <span id="click-upgrade-${index + 1}-count">0</span>;
 
     block.appendChild(btn);
     block.appendChild(count);
@@ -285,4 +283,3 @@ document.getElementById("potato").addEventListener("click", () => {
   // Código original de clique (exemplo)
   addPotatoes(batatasPorClique); // ou o nome da sua função
 });
-
