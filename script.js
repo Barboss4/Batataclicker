@@ -87,9 +87,10 @@ function updatePotatoImage(buildingName) {
     multiverse: "assets/multiverse.gif"
   };
 
-  const img = document.getElementById("backpotato");
-  if (buildings[buildingName].count === 1 && imageMap[buildingName]) {
-    img.src = imageMap[buildingName];
+  for (const name of Object.keys(imageMap)) {
+    if (buildings[name] && buildings[name].count > 0) {
+      document.getElementById("backpotato").src = imageMap[name];
+      break; // mostra o mais avançado que tiver
   }
 }
 
