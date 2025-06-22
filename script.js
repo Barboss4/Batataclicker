@@ -229,3 +229,58 @@ document.getElementById("potato").addEventListener("click", () => {
     audioStarted = true;
   }
 });
+
+// Configurações do limitador
+const maxCPS = 5; // máximo de cliques por segundo permitido
+let clickTimestamps = [];
+let blocked = false;
+
+// Elemento de aviso (adicione no HTML se quiser algo visual)
+const aviso = document.createElement("div");
+aviso.id = "autoclick-warning";
+aviso.innerText = "🚫 Ta usando autoclick ne safado! ta achando q é o Max palaro?";
+aviso.style.display = "none";
+document.body.appendChild(aviso);
+
+function showWarning() {
+  aviso.style.display = "block";
+  aviso.style.position = "fixed";
+  aviso.style.top = "80px";
+  aviso.style.left = "50%";
+  aviso.style.transform = "translateX(-50%)";
+  aviso.style.backgroundColor = "#ffcccc";
+  aviso.style.padding = "10px 20px";
+  aviso.style.border = "2px solid red";
+  aviso.style.borderRadius = "10px";
+  aviso.style.zIndex = "2000";
+  aviso.style.fontWeight = "bold";
+
+  setTimeout(() => {
+    aviso.style.display = "none";
+  }, 4000);
+}
+
+// Modifique sua função de clique da batata
+document.getElementById("potato").addEventListener("click", () => {
+  if (blocked) return;
+
+  const now = Date.now();
+  clickTimestamps.push(now);
+
+  // Remove timestamps mais antigos que 1 segundo
+  clickTimestamps = clickTimestamps.filter(ts => now - ts <= 1000);
+
+  if (clickTimestamps.length > maxCPS) {
+    blocked = true;
+    showWarning();
+    setTimeout(() => {
+      blocked = false;
+      clickTimestamps = [];
+    }, 3000); // 3 segundos de bloqueio
+    return;
+  }
+
+  // Código original de clique (exemplo)
+  addPotatoes(batatasPorClique); // ou o nome da sua função
+});
+
