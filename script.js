@@ -261,13 +261,11 @@ function showWarning() {
 }
 
 // Modifique sua função de clique da batata
-document.getElementById("potato").addEventListener("click", () => {
+document.getElementById("potato").addEventListener("click", (e) => {
   if (blocked) return;
 
   const now = Date.now();
   clickTimestamps.push(now);
-
-  // Remove timestamps mais antigos que 1 segundo
   clickTimestamps = clickTimestamps.filter(ts => now - ts <= 1000);
 
   if (clickTimestamps.length > maxCPS) {
@@ -276,10 +274,30 @@ document.getElementById("potato").addEventListener("click", () => {
     setTimeout(() => {
       blocked = false;
       clickTimestamps = [];
-    }, 3000); // 3 segundos de bloqueio
+    }, 3000);
     return;
   }
 
-  // Código original de clique (exemplo)
-  addPotatoes(batatasPorClique); // ou o nome da sua função
+  potatoes += clickValue;
+  updateDisplay();
+
+  const rect = e.target.getBoundingClientRect();
+  const x = e.clientX;
+  const y = e.clientY;
+
+  showFloatingText(clickValue, x, y);
 });
+
+function showFloatingText(value, x, y) {
+  const float = document.createElement("div");
+  float.className = "floating-text";
+  float.textContent = `+${value} 🥔`;
+  float.style.left = `${x}px`;
+  float.style.top = `${y}px`;
+
+  document.body.appendChild(float);
+
+  setTimeout(() => {
+    float.remove();
+  }, 1000); // remove após 1 segundo
+}
