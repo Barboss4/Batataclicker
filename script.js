@@ -108,6 +108,7 @@ function buyBuilding(name) {
 
     updateDisplay();
     checkUnlocks();
+    updatePotatoImage();
     updatePotatoImage(name);
   }
 }
